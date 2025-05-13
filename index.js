@@ -3,6 +3,11 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.static(__dirname + "/public"));
+
+app.use(express.json());
+
+app.set("view engine", "ejs");
 
 const studentSchema = new mongoose.Schema(
     {
@@ -17,18 +22,18 @@ const studentSchema = new mongoose.Schema(
 
 const Student = mongoose.model("Student", studentSchema, "Students")
 
-app.get("/idk", async (req, res) => {
+app.get("/student", async (req, res) => {
     const students = await Student.find({});
      res.json(students)
 });
 
 
-app.post("/user/save", async (req, res) => {
+app.post("/student/save", async (req, res) => {
 const student1 = await new Student({
- name: "Yineiri",
- image: "",
- grades: 12,
- description: "IDK"
+ name: req.body.name,
+ image: req.body.image,
+ grades: req.body.grades,
+ description: req.body.description
 }).save()
    res.json(student1);
  });
@@ -39,15 +44,14 @@ app.patch("/update/:name",async (req,res)=>{
 const updateStudent= await Student.findOneAndUpdate(
   {
     name:req.params.name
-  },
-  {
-    grades:req.body.grades
-})
+  }, 
+  req.body
+)
 res.json(updateStudent)
 })
 
 
-app.delete("/delete/student",async(req,res)=>{
+app.delete("/delete/:name",async(req,res)=>{
 const deleteStudent= await Student.findOneAndDelete({
   name:req.params.name
 })
