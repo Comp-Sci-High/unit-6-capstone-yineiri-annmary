@@ -27,6 +27,12 @@ app.get("/student", async (req, res) => {
      res.json(students)
 });
 
+app.get("/team", async (req, res) => {
+    const students = await Student.find({});
+    res.render("team.ejs", { students });
+});
+
+
 
 app.post("/student/save", async (req, res) => {
 const student1 = await new Student({
@@ -62,7 +68,7 @@ res.json(deleteStudent)
 async function startServer() {
   
    
-  await mongoose.connect("mongodb+srv://SE12:CSH2025@cluster0.d60x7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+  await mongoose.connect("mongodb+srv://SE12:CSH2025@cluster0.d60x7.mongodb.net/FV25?retryWrites=true&w=majority&appName=Cluster0");
 
   app.listen(3000, () => {
     console.log("Server is running");

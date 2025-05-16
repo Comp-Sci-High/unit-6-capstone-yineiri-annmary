@@ -28,6 +28,8 @@
         }
         .member-card img {
             width: 100%;
+            height: 200px;
+            object-fit: cover;
             border-radius: 10px;
         }
         .member-card h3 {
@@ -43,10 +45,10 @@
     <h1>Our Dance Team</h1>
     <div class="team-container">
       <% for (let i=0; i< students.length; i++){ %>
-      <p>Name: <%= students[i] %></p>
-      <img src="<%= students[i] %>">
-      <p>Grade: <%= students[i] %></p>
-      <p>About: <%= students[i] %></p>
+      <p>Name: <%= students[i].name %></p>
+      <img src="<%= students[i].image %>">
+      <p>Grade: <%= students[i].grades %></p>
+      <p>About: <%= students[i].description %></p>
        <%  } %>
     </div>
  
