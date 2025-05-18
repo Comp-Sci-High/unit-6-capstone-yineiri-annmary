@@ -27,6 +27,12 @@ app.get("/student", async (req, res) => {
      res.json(students)
 });
 
+
+app.get("/", async (req,res)=>{
+  const students = await Student.find({});
+  res.sendFile(__dirname + "/index.html");
+});
+
 app.get("/team", async (req, res) => {
     const students = await Student.find({});
     res.render("team.ejs", { students });

@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            background: palevioletred;
             margin: 0;
             padding: 20px;
         }
@@ -23,7 +23,7 @@
             border-radius: 10px;
             padding: 15px;
             width: 250px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px white(0,0,0,0.1);
             text-align: center;
         }
         .member-card img {
@@ -44,7 +44,7 @@
 
     <h1>Our Dance Team</h1>
     <div class="team-container">
-      <% for (let i=0; i< students.length; i++){ %>
+      <% for (let i=0; i < students.length; i++){ %>
       <p>Name: <%= students[i].name %></p>
       <img src="<%= students[i].image %>">
       <p>Grade: <%= students[i].grades %></p>

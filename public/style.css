@@ -47,4 +47,107 @@ h1 {
   padding: 5px;
 }
 
-.i
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #AEE0F6; /* Baby Blue Background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar styling */
+header {
+    background-color: #4BB8E1; /* Slightly darker blue */
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FFD700; /* Pop of yellow on hover */
+}
+
+/* Team Section */
+.team {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+/* Member card styling */
+.member-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Image */
+.member-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Member info */
+.member-card h3 {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #4BB8E1; /* Matching color */
+}
+
+.member-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Add responsiveness for smaller screens */
+@media screen and (max-width: 768px) {
+    .team {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member-card {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
