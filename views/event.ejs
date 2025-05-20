@@ -31,27 +31,27 @@
 </nav>
 
 
-    <h1>Our Dance Team</h1>
+    <h1>Info about the team</h1>
     <div class="team-container">
-      <% for (let i=0; i < students.length; i++){ %>
-        <div class="card">
-      <p>Name: <%= students[i].name %></p>
-      <img src="<%= students[i].image %>">
-      <p>Grade: <%= students[i].grades %></p>
-      <p>About: <%= students[i].description %></p>
+      <% for (let i=0; i < events.length; i++){ %>
+         <div class="card">
+      <p>Title: <%= events[i].title %></p>
+      <p>Date: <%= events[i].dateTime%></p>
+      <p>Location: <%= events[i].description %></p>
+      <p>About: <%= events[i].shortDescription %></p>
+      <img src="<%= events[i].video %>">
       </div>
        <%  } %>
     </div>
 
-
- <section id="contact" class="contact-section">
+     <section id="contact" class="contact-section">
       <h2>Contact Us</h2>
       <p>Email: danceteam@school.edu</p>
     </section>
   </main>
-
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-
  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+
 </body>
 </html>

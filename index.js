@@ -17,28 +17,37 @@ const studentSchema = new mongoose.Schema(
         description: {type: String}
     }
 );
-
+const eventSchema= new mongoose.Schema(
+  {
+    title:{type:String,required:true},
+    dateTime:{type:String},
+    location:{type:String},
+    shortDescription:{type:String},
+    video:{type:String},
+  }
+)
 
 
 const Student = mongoose.model("Student", studentSchema, "Students")
+const Event =mongoose.model("Event", eventSchema, "Events")
 
-app.get("/student", async (req, res) => {
-    const students = await Student.find({});
-     res.json(students)
-});
 
 
 app.get("/", async (req,res)=>{
-  const students = await Student.find({});
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/public/home.html");
 });
 
 app.get("/team", async (req, res) => {
     const students = await Student.find({});
     res.render("team.ejs", { students });
-});
-
-
+  });
+  
+  app.get("/event", async (req, res) => {
+    const events = await Event.find({});
+    res.render("event.ejs", { events });
+  });
+  
+  //events
 
 app.post("/student/save", async (req, res) => {
 const student1 = await new Student({
@@ -49,6 +58,26 @@ const student1 = await new Student({
 }).save()
    res.json(student1);
  });
+
+
+ app.post("/add", async (req,res)=>{
+  res.sendFile(__dirname + "/public/mickey.html")
+})
+
+
+
+
+app.post("/event/save", async (req, res) => {
+const event1 = await new Event({
+ title: req.body.title,
+ dateTime: req.body.dateTime,
+ location: req.body.location,
+ shortDescription: req.body.shortDescription,
+video:req.body.video
+}).save()
+   res.json(event1);
+ });
+
 
 
 
@@ -62,13 +91,26 @@ const updateStudent= await Student.findOneAndUpdate(
 res.json(updateStudent)
 })
 
+app.patch("/update/:id",async (req,res)=>{
+const updateEvent= await Event.findOneAndUpdate(
+  {
+    id:req.params.id
+  }, 
+  req.body
+)
+res.json(updateEvent)
+})
 
-app.delete("/delete/:name",async(req,res)=>{
-const deleteStudent= await Student.findOneAndDelete({
-  name:req.params.name
+
+
+app.delete("/delete/:id",async(req,res)=>{
+const deleteEvent= await Event.findOneAndDelete({
+  id:req.params.id
 })
-res.json(deleteStudent)
-})
+res.json(deleteEvent)
+}) 
+
+
 
 
 async function startServer() {
