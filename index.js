@@ -9,6 +9,11 @@ app.use(express.json());
 
 app.set("view engine", "ejs");
 
+app.use((req, res, next)=>{
+  console.log(req.method + " " + req.path)
+  next()
+})
+
 const studentSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
@@ -41,6 +46,11 @@ app.get("/team", async (req, res) => {
     const students = await Student.find({});
     res.render("team.ejs", { students });
   });
+
+  app.get("/admin/team", async (req, res) => {
+    const students = await Student.find({});
+    res.render("teamadmin.ejs", { students });
+  });
   
   app.get("/event", async (req, res) => {
     const events = await Event.find({});
@@ -60,10 +70,9 @@ const student1 = await new Student({
  });
 
 
- app.post("/add", async (req,res)=>{
-  res.sendFile(__dirname + "/public/mickey.html")
+ app.get("/add", async (req,res)=>{
+  res.sendFile(__dirname + "/public/add.html")
 })
-
 
 
 
@@ -81,10 +90,10 @@ video:req.body.video
 
 
 
-app.patch("/update/:name",async (req,res)=>{
+app.patch("/update/:id",async (req,res)=>{
 const updateStudent= await Student.findOneAndUpdate(
   {
-    name:req.params.name
+    _id:req.params.id
   }, 
   req.body
 )
@@ -103,15 +112,27 @@ res.json(updateEvent)
 
 
 
-app.delete("/delete/:id",async(req,res)=>{
+app.delete("/delete/event/:id",async(req,res)=>{
 const deleteEvent= await Event.findOneAndDelete({
-  id:req.params.id
+  _id:req.params.id
 })
 res.json(deleteEvent)
 }) 
 
 
+app.delete("/delete/student/:id",async(req,res)=>{
+const deleteStudent= await Student.findOneAndDelete({
+  _id:req.params.id
+})
+res.json(deleteStudent)
+}) 
 
+app.patch("update/:id", async (req,res)=>{
+  const response = await Student.findOneAndUpdate(
+    {_id: req.params.id},req.body,{new:true}
+  )
+  res.json(response)
+})
 
 async function startServer() {
   
